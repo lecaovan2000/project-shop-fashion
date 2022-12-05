@@ -11,6 +11,7 @@ import Button from "../components/Button";
 import { useState } from "react";
 import { useCallback } from "react";
 import { useEffect } from "react";
+import InfinityList from "../components/InfinityList";
 
 const Catalog = () => {
   const initFilter = {
@@ -87,7 +88,7 @@ const Catalog = () => {
   useEffect(() => {
     updateProduct();
   }, [updateProduct]);
-  console.log(filter);
+  // console.log(filter);
   return (
     <Helmet title="Catalog">
       <div className="catalog">
@@ -166,18 +167,7 @@ const Catalog = () => {
           </div>
         </div>
         <div className="catalog__content">
-          <Gird col={3} mdCol={2} smCol={1} gap={20}>
-            {products.map((item, index) => (
-              <ProductCard
-                key={index}
-                img01={item.image01}
-                img02={item.image02}
-                name={item.title}
-                price={item.price}
-                slug={item.slug}
-              />
-            ))}
-          </Gird>
+          <InfinityList data={products} />
         </div>
       </div>
     </Helmet>
