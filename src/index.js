@@ -1,16 +1,22 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 
 import "./assets/boxicons-2.0.7/css/boxicons.min.css";
 import Layout from "./components/Layout";
 import "./scss/index.scss";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(
+//   <React.StrictMode>
+//     <Layout />
+//   </React.StrictMode>
+// );
+ReactDOM.render(
   <React.StrictMode>
     <Layout />
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
