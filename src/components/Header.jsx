@@ -29,7 +29,7 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", null);
     };
-  }, []);
+  }, [activeNav]);
   const menuLeft = useRef(null);
   const menuToggle = () => menuLeft.current.classList.toggle("active");
 
