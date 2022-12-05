@@ -1,16 +1,11 @@
-import React from "react";
 import Helmet from "../components/Helmet";
-import Gird from "../components/Gird";
 import productData from "../assets/fake-data/products";
-import ProductCard from "../components/ProductCard";
 import category from "../assets/fake-data/category";
 import CheckBox from "../components/CheckBox";
 import Color from "../assets/fake-data/product-color";
 import size from "../assets/fake-data/product-size";
 import Button from "../components/Button";
-import { useState } from "react";
-import { useCallback } from "react";
-import { useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import InfinityList from "../components/InfinityList";
 
 const Catalog = () => {
@@ -89,10 +84,13 @@ const Catalog = () => {
     updateProduct();
   }, [updateProduct]);
   // console.log(filter);
+
+  const filterRef = useRef(null);
+  const showHideFilter = () => filterRef.current.classList.toggle("active");
   return (
     <Helmet title="Catalog">
       <div className="catalog">
-        <div className="catalog__filter">
+        <div className="catalog__filter" ref={filterRef}>
           <div className="catalog__filter__widget">
             <div className="catalog__filter__widget__title">
               Danh mục sản phẩm
@@ -165,6 +163,9 @@ const Catalog = () => {
               </Button>
             </div>
           </div>
+        </div>
+        <div className="catalog__filter_toggle">
+          <Button></Button>
         </div>
         <div className="catalog__content">
           <InfinityList data={products} />
