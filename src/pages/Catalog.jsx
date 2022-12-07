@@ -91,6 +91,12 @@ const Catalog = () => {
     <Helmet title="Catalog">
       <div className="catalog">
         <div className="catalog__filter" ref={filterRef}>
+          <div
+            className="catalog__filter__close"
+            onClick={() => showHideFilter()}
+          >
+            <i className="bx bx-left-arrow-alt"></i>
+          </div>
           <div className="catalog__filter__widget">
             <div className="catalog__filter__widget__title">
               Danh mục sản phẩm
@@ -164,8 +170,8 @@ const Catalog = () => {
             </div>
           </div>
         </div>
-        <div className="catalog__filter_toggle">
-          <Button></Button>
+        <div className="catalog__filter__toggle">
+          <Button onClick={() => showHideFilter()}>Bộ lọc</Button>
         </div>
         <div className="catalog__content">
           <InfinityList data={products} />
