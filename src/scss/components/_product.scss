@@ -1,0 +1,28 @@
+.product {
+  @include flex(flex-start, flex-start);
+  &__images {
+    @include flex(flex-start, flex-start);
+
+    width: 60%;
+    flex-wrap: wrap;
+
+    &__list {
+      width: 20%;
+
+      &__item {
+        cursor: pointer;
+      }
+    }
+    &__main {
+      flex-grow: 1;
+      padding-top: 100%;
+      position: relative;
+      img {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        height: 100%;
+      }
+    }
+  }
+}

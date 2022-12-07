@@ -44,6 +44,14 @@
         }
       }
     }
+    &__close {
+      display: none;
+      @include tablet {
+        display: block;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+    }
   }
 
   &__content {
@@ -51,6 +59,13 @@
 
     @include tablet {
       width: 100%;
+    }
+  }
+  &__filter__toggle {
+    display: none;
+    @include tablet {
+      display: block;
+      margin-bottom: 2rem;
     }
   }
 }

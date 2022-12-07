@@ -20,13 +20,11 @@
       }
       &:nth-child(2) {
         transform: translateX(-50%) scale(0);
-        //   transition: transform 0.5s ease;
       }
     }
     &:hover img {
       &:nth-child(1) {
         transform: translateX(-50%) scale(0);
-        //  transition: transform 0.5s ease;
       }
       &:nth-child(2) {
         transform: translateX(-50%) scale(1);
