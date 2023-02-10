@@ -1,4 +1,4 @@
-import React from "react";
+// import { useState, useEffect } from "react";
 
 import ProductData from "../assets/fake-data/products";
 import Helmet from "../components/Helmet";
@@ -7,9 +7,28 @@ import Grid from "../components/Gird";
 import ProductCard from "../components/ProductCard";
 import ProductView from "../components/ProductView";
 
+import productApi from "../modalApi/productApi";
+
 const Product = (props) => {
   const product = ProductData.getProductBySlug(props.match.params.slug);
   const relatedProduct = ProductData.getProducts(12);
+
+  // const [getProduct, setGetProduct] = useState([]);
+  // console.log("call api");
+  // const callApiGetAllProduct = async () => {
+  //   console.log("call api");
+  //   try {
+  //     const response = await productApi.getAllProduct();
+  //     setGetProduct(response.data);
+  //   } catch (error) {
+  //     console.log("looi", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  // callApiGetAllProduct();
+  // }, []);
+  // console.log("call api", getProduct);
   return (
     <Helmet title={product.title}>
       <Section>

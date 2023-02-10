@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import Helmet from "../components/Helmet";
 import HeroSlider from "../components/HeroSlider";
 import heroSliderData from "../assets/fake-data/hero-slider";
@@ -10,8 +10,24 @@ import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import productData from "../assets/fake-data/products";
 import banner from "../assets/images/banner.png";
+import productApi from "../modalApi/productApi";
 
 const Home = () => {
+  const [dataProduct, setDataProduct] = useState({});
+
+  const callApiGetAllProduct = async () => {
+    try {
+      const response = await productApi.getAllProduct();
+      setDataProduct(response);
+      console.log("call api", response.data);
+    } catch (error) {
+      console.log("err", error);
+    }
+  };
+  useEffect(() => {
+    callApiGetAllProduct();
+  }, []);
+
   return (
     <Helmet title="Trang chủ">
       <HeroSlider
@@ -39,11 +55,11 @@ const Home = () => {
         <SectionTitle>Top sản phẩm bán chạy trong tuần</SectionTitle>
         <SectionBody>
           <Grid col={4} mdCol={2} smCol={1} gap={20}>
-            {productData.getProducts(4).map((item, index) => (
+            {dataProduct?.data?.map((item, index) => (
               <ProductCard
                 key={index}
-                img01={item.image01}
-                img02={item.image02}
+                img01={item.img_avatar.image01}
+                img02={item.img_avatar.image02}
                 name={item.title}
                 price={item.price}
                 slug={item.slug}

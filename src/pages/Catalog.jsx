@@ -7,6 +7,7 @@ import size from "../assets/fake-data/product-size";
 import Button from "../components/Button";
 import { useState, useCallback, useEffect, useRef } from "react";
 import InfinityList from "../components/InfinityList";
+// import productApi from "../modalApi/productApi";
 
 const Catalog = () => {
   const initFilter = {
@@ -84,6 +85,19 @@ const Catalog = () => {
     updateProduct();
   }, [updateProduct]);
   // console.log(filter);
+
+  // const callApiGetAllProduct = async () => {
+  //   const url = "product/get_all";
+  //   try {
+  //     const response = await productApi.getAllProduct(url);
+  //     console.log("call api", response);
+  //   } catch (error) {
+  //     console.log("looi", error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   callApiGetAllProduct();
+  // }, []);
 
   const filterRef = useRef(null);
   const showHideFilter = () => filterRef.current.classList.toggle("active");
