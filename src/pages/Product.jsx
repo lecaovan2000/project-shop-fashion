@@ -1,36 +1,45 @@
 // import { useState, useEffect } from "react";
 
-import ProductData from "../assets/fake-data/products";
+// import ProductData from "../assets/fake-data/products";
+import productData from "../assets/fake-data/products";
 import Helmet from "../components/Helmet";
 import { Section, SectionBody, SectionTitle } from "../components/Section";
 import Grid from "../components/Gird";
 import ProductCard from "../components/ProductCard";
 import ProductView from "../components/ProductView";
 
-import productApi from "../modalApi/productApi";
+// import productApi from "../modalApi/productApi";
 
 const Product = (props) => {
-  const product = ProductData.getProductBySlug(props.match.params.slug);
-  const relatedProduct = ProductData.getProducts(12);
+  const relatedProduct = productData.getProducts(12);
+  const product = productData.getProductBySlug(props.match.params.slug);
+  console.log("product", product);
 
-  // const [getProduct, setGetProduct] = useState([]);
-  // console.log("call api");
+  // const [getProduct, setGetProduct] = useState({});
+
   // const callApiGetAllProduct = async () => {
-  //   console.log("call api");
   //   try {
   //     const response = await productApi.getAllProduct();
   //     setGetProduct(response.data);
+  //     console.log("call api", response);
   //   } catch (error) {
   //     console.log("looi", error);
   //   }
   // };
 
   // useEffect(() => {
-  // callApiGetAllProduct();
-  // }, []);
-  // console.log("call api", getProduct);
+  //   callApiGetAllProduct();
+  // }, [props.match.params.slug]);
+
+  // const getProductBySlug = (slug) => {
+  //   const selectProduct = getProduct.find((e) => e.slug === slug);
+  //   return selectProduct;
+  // };
+  // const products = getProductBySlug(props.match.params.slug);
+  // console.log("slug", products);
+
   return (
-    <Helmet title={product.title}>
+    <Helmet title={product?.title}>
       <Section>
         <SectionBody>
           <ProductView product={product} />
@@ -45,8 +54,8 @@ const Product = (props) => {
             {relatedProduct.map((items, index) => (
               <ProductCard
                 key={index}
-                img01={items.image01}
-                img02={items.image02}
+                img01={items.img_avatar.image01}
+                img02={items.img_avatar.image02}
                 name={items.name}
                 price={items.price}
               />

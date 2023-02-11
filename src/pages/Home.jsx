@@ -55,14 +55,14 @@ const Home = () => {
         <SectionTitle>Top sản phẩm bán chạy trong tuần</SectionTitle>
         <SectionBody>
           <Grid col={4} mdCol={2} smCol={1} gap={20}>
-            {dataProduct?.data?.map((item, index) => (
+            {dataProduct?.data?.map((items, index) => (
               <ProductCard
                 key={index}
-                img01={item.img_avatar.image01}
-                img02={item.img_avatar.image02}
-                name={item.title}
-                price={item.price}
-                slug={item.slug}
+                img01={items.img_avatar.image01}
+                img02={items.img_avatar.image02}
+                name={items.title}
+                price={items.price}
+                slug={items.slug}
               />
             ))}
           </Grid>
@@ -76,8 +76,8 @@ const Home = () => {
             {productData.getProducts(8).map((item, index) => (
               <ProductCard
                 key={index}
-                img01={item.image01}
-                img02={item.image02}
+                img01={item.img_avatar.image01}
+                img02={item.img_avatar.image02}
                 name={item.title}
                 price={item.price}
                 slug={item.slug}

@@ -1,29 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Button from "./Button";
 
 const ProductView = (props) => {
   const product = props.product;
-  const [previewImg, setPreviewImg] = useState(product.image01);
+  const [previewImg, setPreviewImg] = useState(product?.img_avatar?.image01);
+
+  // const [product, setProduct] = useState(props.product);
   const [descriptionEx, setDescriptionEx] = useState(false);
   const [color, setColor] = useState(undefined);
   const [size, setSize] = useState(undefined);
+
+  // useEffect(() => {
+  //   setProduct(props.product);
+  // }, []);
+
   return (
     <div className="product">
       <div className="product__images">
         <div className="product__images__list">
           <div
             className="product__images__list__item"
-            onClick={() => setPreviewImg(product.image01)}
+            onClick={() => setPreviewImg(product?.img_avatar?.image01)}
           >
-            <img src={product.image01} alt="#" />
+            <img src={product?.img_avatar?.image01} alt="#" />
           </div>
 
           <div
             className="product__images__list__item"
-            onClick={() => setPreviewImg(product.image02)}
+            onClick={() => setPreviewImg(product?.img_avatar.image02)}
           >
-            <img src={product.image02} alt="#" />
+            <img src={product?.img_avatar?.image02} alt="#" />
           </div>
         </div>
         <div className="product__images__main">
@@ -33,7 +40,7 @@ const ProductView = (props) => {
           <div className="product-description__title">chi tiết sản phẩm</div>
           <div
             className="product-description__content"
-            dangerouslySetInnerHTML={{ __html: product.description }}
+            dangerouslySetInnerHTML={{ __html: product?.description }}
           ></div>
           <div className="product-description__toggle">
             <Button size="sm" onClick={() => setDescriptionEx(!descriptionEx)}>
@@ -43,17 +50,17 @@ const ProductView = (props) => {
         </div>
       </div>
       <div className="product__info">
-        <h1 className="product__info__title">{product.title}</h1>
+        <h1 className="product__info__title">{product?.title}</h1>
         <div className="product__info__item">
           <span className="product__info__item__price">
-            {Number(product.price)}
+            {Number(product?.price)}
           </span>
         </div>
 
         <div className="product__info__item">
           <div className="product__info__item__title">Màu sắc</div>
           <div className="product__info__item__list">
-            {product.colors.map((items, index) => (
+            {product?.colors?.map((items, index) => (
               <div
                 key={index}
                 className={`product__info__item__list__item ${
@@ -70,7 +77,7 @@ const ProductView = (props) => {
         <div className="product__info__item">
           <div className="product__info__item__title">Kích cỡ</div>
           <div className="product__info__item__list">
-            {product.size.map((items, index) => (
+            {product?.size?.map((items, index) => (
               <div
                 key={index}
                 className={`product__info__item__list__item ${
