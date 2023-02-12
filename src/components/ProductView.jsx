@@ -1,19 +1,47 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "./Button";
+import { withRouter } from "react-router-dom";
 
 const ProductView = (props) => {
   const product = props.product;
   const [previewImg, setPreviewImg] = useState(product?.img_avatar?.image01);
 
-  // const [product, setProduct] = useState(props.product);
   const [descriptionEx, setDescriptionEx] = useState(false);
   const [color, setColor] = useState(undefined);
   const [size, setSize] = useState(undefined);
+  const [quantity, setQuantity] = useState(1);
 
-  // useEffect(() => {
-  //   setProduct(props.product);
-  // }, []);
+  const updateQuantity = (type) => {
+    if (type === "plus") {
+      setQuantity(quantity + 1);
+    } else {
+      setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
+    }
+  };
+  const check = () => {
+    if (color === undefined) {
+      alert("Chưa chọn màu sắt");
+      return false;
+    }
+    if (size === undefined) {
+      alert("Chưa chọn kích cỡ");
+      return false;
+    }
+    return true;
+  };
+  const addToCart = () => {
+    if (check()) console.log("logg", { color, size, quantity });
+  };
+
+  const goToCart = () => {
+    if (check()) props.history.push("/cart");
+  };
+  useEffect(() => {
+    setPreviewImg(product?.img_avatar?.image01);
+    setQuantity(1);
+    setColor(undefined);
+    setSize(undefined);
+  }, [product]);
 
   return (
     <div className="product">
@@ -92,9 +120,52 @@ const ProductView = (props) => {
             ))}
           </div>
         </div>
+
+        <div className="product__info__item">
+          <div className="product__info__item__title">Số Lượng</div>
+          <div className="product__info__item__quantity">
+            <div
+              onClick={() => updateQuantity("minus")}
+              className="product__info__item__quantity__btn"
+            >
+              <i className="bx bx-minus"></i>
+            </div>
+
+            <div className="product__info__item__quantity__input">
+              {quantity}
+            </div>
+
+            <div
+              onClick={() => updateQuantity("plus")}
+              className="product__info__item__quantity__btn"
+            >
+              <i className="bx bx-plus"></i>
+            </div>
+          </div>
+        </div>
+        <div
+          className={`product-description mobile ${
+            descriptionEx ? "expand" : ""
+          }`}
+        >
+          <div className="product-description__title">chi tiết sản phẩm</div>
+          <div
+            className="product-description__content"
+            dangerouslySetInnerHTML={{ __html: product?.description }}
+          ></div>
+          <div className="product-description__toggle">
+            <Button size="sm" onClick={() => setDescriptionEx(!descriptionEx)}>
+              {descriptionEx ? "Thu gọn" : "Xem thêm"}
+            </Button>
+          </div>
+        </div>
+        <div className="product__info__item">
+          <Button onClick={() => addToCart()}>Thêm vào giỏ hàng</Button>
+          <Button onClick={() => goToCart()}>Mua ngay</Button>
+        </div>
       </div>
     </div>
   );
 };
 
-export default ProductView;
+export default withRouter(ProductView);
