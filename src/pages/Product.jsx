@@ -58,6 +58,7 @@ const Product = (props) => {
                 img02={items.img_avatar.image02}
                 name={items.name}
                 price={items.price}
+                slug={items.slug}
               />
             ))}{" "}
           </Grid>
