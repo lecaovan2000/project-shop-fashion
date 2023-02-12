@@ -3,7 +3,12 @@ import Button from "./Button";
 import { withRouter } from "react-router-dom";
 
 const ProductView = (props) => {
-  const product = props.product;
+  let product = props.product;
+
+  if (product === undefined) {
+    product = {};
+  }
+
   const [previewImg, setPreviewImg] = useState(product?.img_avatar?.image01);
 
   const [descriptionEx, setDescriptionEx] = useState(false);
