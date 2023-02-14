@@ -260,6 +260,19 @@ const getProducts = (count) => {
 
 const getProductBySlug = (slug) => products.find((e) => e.slug === slug);
 
+const getCartItemDetail = (cartItems) => {
+  let res = [];
+  if (cartItems.length > 0) {
+    cartItems.forEach((e) => {
+      res.push({
+        ...e,
+        product: getProductBySlug(e.slug),
+      });
+    });
+  }
+  return res;
+};
+
 const getCartItemsInfo = (cartItems) => {
   let res = [];
   if (cartItems.length > 0) {
@@ -282,6 +295,7 @@ const productData = {
   getProducts,
   getProductBySlug,
   getCartItemsInfo,
+  getCartItemDetail,
 };
 
 export default productData;
