@@ -2,8 +2,12 @@ import { useState, useEffect } from "react";
 import Button from "./Button";
 import { withRouter } from "react-router-dom";
 
+import { useDispatch } from "react-redux";
+import { addItems } from "../redux/shopping-cart/cartItemSlice";
+
 const ProductView = (props) => {
   let product = props.product;
+  const dispatch = useDispatch();
 
   if (product === undefined) {
     product = {};
@@ -35,11 +39,34 @@ const ProductView = (props) => {
     return true;
   };
   const addToCart = () => {
-    if (check()) console.log("logg", { color, size, quantity });
+    // if (check()) addItems() console.log("logg", { color, size, quantity });
+    if (check()) {
+      dispatch(
+        addItems({
+          slug: product.slug,
+          color: color,
+          size: size,
+          quantity: quantity,
+          price: product.price,
+        })
+      );
+      alert("success");
+    }
   };
 
   const goToCart = () => {
-    if (check()) props.history.push("/cart");
+    if (check()) {
+      dispatch(
+        addItems({
+          slug: product.slug,
+          color: color,
+          size: size,
+          quantity: quantity,
+          price: product.price,
+        })
+      );
+      props.history.push("/cart");
+    }
   };
   useEffect(() => {
     setPreviewImg(product?.img_avatar?.image01);
